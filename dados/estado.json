@@ -48,7 +48,8 @@
       "status": "emdia",
       "parcP0": 10,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "tvf",
@@ -63,7 +64,8 @@
       "obs": "Taxa de Vistoria e Fiscalização — R$ 5.711,94/mês.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "darj",
@@ -81,7 +83,8 @@
       "status": "emdia",
       "parcP0": 5,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "ipva26",
@@ -99,7 +102,8 @@
       "obs": "Cota 3/3 paga em abril — encerrado para 2026.",
       "parcP0": 3,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "iptu",
@@ -117,7 +121,8 @@
       "status": "emdia",
       "parcP0": 5,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "alvara",
@@ -135,7 +140,8 @@
       "status": "emdia",
       "parcP0": 5,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "pensao",
@@ -150,7 +156,8 @@
       "obs": "R$ 2.431,50 + R$ 1.215,75; prazo indefinido.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "pedro",
@@ -168,7 +175,8 @@
       "status": "emdia",
       "parcP0": 5,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "valdet",
@@ -186,7 +194,8 @@
       "status": "emdia",
       "parcP0": 1,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "folha",
@@ -201,7 +210,8 @@
       "obs": "Santander; maior concentração dia 4.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "fgts",
@@ -216,7 +226,8 @@
       "obs": "Vencimento legal até dia 7; diversas guias.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "motor",
@@ -231,7 +242,8 @@
       "obs": "Santander; referência ao mês anterior.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "ferias",
@@ -246,7 +258,8 @@
       "obs": "Conforme programação; concentrado no fim do mês.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "resc",
@@ -261,7 +274,8 @@
       "obs": "Prazo legal: 10 dias após aviso.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "sind",
@@ -276,7 +290,8 @@
       "obs": "R$ 276 (SETRANSOL) + R$ 120 (SINTERJ).",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "vibrap",
@@ -294,7 +309,8 @@
       "status": "emdia",
       "parcP0": 10,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "zema",
@@ -309,7 +325,8 @@
       "obs": "Cota 04006/809; ~R$ 1.083–1.099/mês.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "vibra",
@@ -324,7 +341,8 @@
       "obs": "Maior despesa da empresa; prazo ~7 dias da NF.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "pneus",
@@ -339,7 +357,8 @@
       "obs": "Compra conforme desgaste; sem data fixa.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "italog",
@@ -354,7 +373,8 @@
       "obs": "Fretes avulsos conforme necessidade.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "cesta",
@@ -369,7 +389,8 @@
       "obs": "3x R$ 3.180 ou R$ 3.056/R$ 3.156 (nova NF).",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "jovem",
@@ -384,7 +405,8 @@
       "obs": "Programa Jovem Aprendiz.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "alug",
@@ -399,7 +421,8 @@
       "obs": "Edimar (R$ 800) + Renato (R$ 500) + Augusto (R$ 500).",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "tel",
@@ -414,7 +437,8 @@
       "obs": "TIM, Claro, Work, Giga+, Riocabe.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "brk",
@@ -429,7 +453,8 @@
       "obs": "Garagem Macaé; matrícula 1560225-8.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "enel",
@@ -444,7 +469,8 @@
       "obs": "Garagem Macaé, Macabu e Belga.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "icatu",
@@ -459,7 +485,8 @@
       "obs": "Carnê mensal; R$ 135,10.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "essor",
@@ -477,7 +504,8 @@
       "status": "emdia",
       "parcP0": 5,
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "sulam",
@@ -492,7 +520,8 @@
       "obs": "Plano de saúde dos funcionários.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "serasa",
@@ -507,7 +536,8 @@
       "obs": "Múltiplas NFs; consultas cadastrais.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "conta",
@@ -522,7 +552,8 @@
       "obs": "Mensalidade + serviços extras; NF parcelada.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "zirix",
@@ -537,7 +568,8 @@
       "obs": "Monitoramento GPS da frota.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "codsis",
@@ -552,7 +584,8 @@
       "obs": "Mensalidade do sistema de bilhetagem.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "mcr",
@@ -567,7 +600,8 @@
       "obs": "Assessoria jurídica/administrativa.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "ascend",
@@ -582,7 +616,8 @@
       "obs": "SESMT/NR; laudos e PPRA.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "iline",
@@ -597,7 +632,8 @@
       "obs": "Suporte técnico; valor fixo.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "alter",
@@ -612,7 +648,8 @@
       "obs": "NF mensal ~R$ 1.140–1.552.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "proda",
@@ -627,7 +664,8 @@
       "obs": "Processamento de cartão (RIOCARD).",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "rjcon",
@@ -642,7 +680,8 @@
       "obs": "Suporte e sistemas de informática.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "bgm",
@@ -657,7 +696,8 @@
       "obs": "Implantação + mensalidade do sistema.",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     },
     {
       "id": "cury",
@@ -672,10 +712,19 @@
       "obs": "Honorários advocatícios (Dra. Cleide).",
       "status": "emdia",
       "ov": {},
-      "tarifas": []
+      "tarifas": [],
+      "sub": null
     }
   ],
-  "pagamentos": [],
+  "pagamentos": [
+    {
+      "id": 1786733327962,
+      "itemId": "pgfn",
+      "comp": 5,
+      "valor": 37370.09,
+      "data": "14/08/2026"
+    }
+  ],
   "corte": 4,
   "customCarteiras": [],
   "subCarteiras": {
@@ -687,7 +736,7 @@
     ]
   },
   "meta": {
-    "atualizadoEm": "2026-08-14T17:27:26.939Z",
-    "por": "TI"
+    "atualizadoEm": "2026-08-14T18:48:55.710Z",
+    "por": "operador"
   }
 }
