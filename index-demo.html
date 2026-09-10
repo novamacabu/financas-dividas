@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-title" content="Dívidas NM">
 <meta name="color-scheme" content="only light">
 <meta name="supported-color-schemes" content="light">
-<title>Gestão de Dívidas · Nova Macabu</title>
+<title>DEMO — Gestão de Dívidas · Nova Macabu</title>
 <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700&family=Saira+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -293,7 +293,7 @@ html { scroll-behavior: smooth; }
   </div>
   <header>
     <div>
-      <div class="eyebrow">Transportadora Nova Macabu</div>
+      <div class="eyebrow">Transportadora Nova Macabu · 🧪 Demonstração</div>
       <h1 id="titulo-pagina">Gestão de Dívidas</h1>
     </div>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -315,6 +315,7 @@ html { scroll-behavior: smooth; }
   </div>
 
   <!-- Auth bar (logado) -->
+  <div class="aviso-demo" style="background:#FBF3DC;border:1px solid #EFDCA8;color:#6A4E10;border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:12px"><b>🧪 Modo demonstração</b> — todos os dados desta página são fictícios, gerados para testar o processo ponta a ponta. Nada é salvo no banco: recarregue a página para voltar ao estado inicial. Edite, pague, exclua e exporte à vontade.</div>
   <div id="auth-bar"></div>
   <div id="sync-msg"></div>
 
@@ -614,6 +615,7 @@ async function carregar(){
 }
 async function persistir(){
   render();
+  if (MODO_DEMO) return; // demonstração: nada é salvo
   if (!ehOperador()) return; // leitura não salva
   try {
     const dados = { itens, pagamentos, corte, customCarteiras, subCarteiras, refSeq, simFrota, cartOcultas, cartOv, meta: { atualizadoEm: new Date().toISOString(), por: perfil ? perfil.nome || perfil.email : "sistema" } };
@@ -1817,9 +1819,59 @@ function efetivarAquisicao(){
 // ══════════════════ SUPABASE — AUTH + STORAGE (v6.0) ══════════════════
 const SB_URL = "https://sxjeumyprmgrlsbdsrnc.supabase.co";
 const SB_KEY = "sb_publishable_Rub7VewwRZ7B5Eay_b0DlA_QWqn9CQ2";
+const MODO_DEMO = true;
 let sb, sessao = null, perfil = null, sbVersao = 0;
 
-if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+/* demo: service worker desativado */
+function iniciarDemo(){
+  perfil = { nome: "Visitante", email: "demo@novamacabu.com.br", papel: "admin" };
+  sessao = { demo: true };
+  corte = 7; // Ago/26
+  const hojeBR = () => new Date().toLocaleDateString("pt-BR");
+  let pid = 1;
+  const pagar = (itemId, comps, valorFn) => comps.forEach(c => pagamentos.push({ id: pid++, itemId, comp: c, valor: valorFn(c), data: ["0"+((c%12)+1)].map(m=>"05/"+("0"+((c%12)+1)).slice(-2)+"/2026")[0] }));
+  const seq = (a,b) => Array.from({length:b-a+1},(_,k)=>a+k);
+  customCarteiras = [{ id: "bancos", nome: "Bancos & Empréstimos", ic: "🏛️", cor: "#2563a8", desc: "capital de giro e crédito", sigla: "BAN", custom: true }];
+  subCarteiras = { regularize: [{ id:"reg", nome:"Regularize" }], operacional: [{ id:"comb", nome:"Combustível" }] };
+  itens = [
+    { id:"d01", mod:"regularize", sub:"reg", forn:"PGFN", nome:"Transação PGDAU — Parcelamento 60x", media:8200, dia:28, alt:"28–31", freq:"Mensal", obs:"Acordo homologado em Fev/26; guias no portal Regularize.", status:"emdia", parcT:60, parcP:6, parcP0:0, ini:2, ov:{}, tarifas:[], arq:{2:true,3:true,4:true}, coment:{}, numRef:1 },
+    { id:"d02", mod:"regularize", sub:"reg", forn:"Receita Federal", nome:"DARF — Débitos em cobrança 12x", media:3400, dia:20, alt:"—", freq:"Mensal", obs:"", status:"atencao", parcT:12, parcP:2, parcP0:0, ini:5, ov:{}, tarifas:[], arq:{}, coment:{7:"Aguardando emissão da guia de Ago no e-CAC."}, numRef:2 },
+    { id:"d03", mod:"detro", forn:"DETRO-RJ", nome:"Parcelamento proc. 4551/2025", media:6170.10, dia:13, alt:"13–18", freq:"Mensal", obs:"Parcelas 11–17 pagas em 2026; segue em curso.", status:"atraso", parcT:83, parcP:17, parcP0:10, ini:0, ov:{}, tarifas:[{ id:"t1", comp:7, valor:123.40, desc:"Multa por atraso" }], arq:{5:true,6:true}, coment:{}, numRef:3 },
+    { id:"d04", mod:"detro", forn:"DETRO-RJ", nome:"TVF mensal", media:5694.03, dia:10, alt:"2–10", freq:"Mensal", obs:"Taxa de Vistoria e Fiscalização.", status:"emdia", ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:4 },
+    { id:"d05", mod:"estadual", forn:"SEFAZ-RJ", nome:"IPVA frota 2026 — 10x", media:16100, dia:25, alt:"—", freq:"Mensal", obs:"", status:"atencao", parcT:10, parcP:7, parcP0:0, ini:0, ov:{9:8050}, tarifas:[], arq:{}, coment:{}, numRef:5 },
+    { id:"d06", mod:"municipal", forn:"Pref. Macaé", nome:"IPTU garagem — 12x", media:988.02, dia:15, alt:"—", freq:"Mensal", obs:"", status:"emdia", parcT:12, parcP:8, parcP0:0, ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:6 },
+    { id:"d07", mod:"municipal", forn:"Pref. Macaé", nome:"Alvará 2025 — parcelamento", media:750, dia:10, alt:"—", freq:"Mensal", obs:"Quitado em Jun/26.", status:"encerrado", parcT:6, parcP:6, parcP0:0, ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:7 },
+    { id:"d08", mod:"judicial", forn:"Pedro Linhares", nome:"Acordo judicial 24x", media:1397.76, dia:5, alt:"—", freq:"Mensal", obs:"Depósito em conta judicial.", status:"emdia", parcT:24, parcP:8, parcP0:0, ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:8 },
+    { id:"d09", mod:"pessoal", forn:"Caixa/FGTS", nome:"FGTS parcelado — 36x", media:4520, dia:7, alt:"—", freq:"Mensal", obs:"", status:"emdia", parcT:36, parcP:26, parcP0:18, ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:9 },
+    { id:"d10", mod:"financiamento", forn:"Vibra Energia", nome:"Parcelamento combustível 24x", media:4112.54, dia:18, alt:"—", freq:"Mensal", obs:"", status:"emdia", parcT:24, parcP:13, parcP0:5, ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:10 },
+    { id:"d11", mod:"operacional", sub:"comb", forn:"Ipiranga", nome:"Combustível frota (recorrente)", media:98000, dia:6, alt:"1–6", freq:"Mensal", obs:"Faturamento quinzenal consolidado.", status:"atencao", ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:11 },
+    { id:"d12", mod:"servicos", forn:"Essor Seguros", nome:"Seguro frota — 12x", media:3833.46, dia:12, alt:"—", freq:"Mensal", obs:"", status:"emdia", parcT:12, parcP:8, parcP0:0, ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:12 },
+    { id:"d13", mod:"servicos", forn:"Vivo Empresas", nome:"Telefonia e internet", media:1240, dia:8, alt:"—", freq:"Mensal", obs:"", status:"emdia", ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:13 },
+    { id:"d14", mod:"bancos", forn:"Banco do Brasil", nome:"Capital de giro — 48x", media:12500, dia:9, alt:"—", freq:"Mensal", obs:"Contrato 2025; garantia recebíveis.", status:"atraso", parcT:48, parcP:13, parcP0:6, ini:0, ov:{}, tarifas:[], arq:{}, coment:{}, numRef:14 }
+  ].map(i => ({ sub: i.sub||null, tarifas: i.tarifas||[], ...i }));
+  refSeq = 14;
+  pagamentos = [];
+  pagar("d01", seq(2,7), () => 8200);
+  pagar("d02", seq(5,6), () => 3400);
+  pagar("d03", seq(0,6), () => 6170.10);
+  pagar("d04", seq(0,7), () => 5694.03);
+  pagar("d05", seq(0,5), () => 16100); pagar("d05", [6], () => 8000);
+  pagar("d06", seq(0,7), () => 988.02);
+  pagar("d07", seq(0,5), () => 750);
+  pagar("d08", seq(0,7), () => 1397.76);
+  pagar("d09", seq(0,7), () => 4520);
+  pagar("d10", seq(0,7), () => 4112.54);
+  pagar("d11", seq(0,6), () => 98000); pagar("d11", [7], () => 60000);
+  pagar("d12", seq(0,7), () => 3833.46);
+  pagar("d13", seq(0,7), () => 1240);
+  pagar("d14", seq(0,6), () => 12500);
+  simFrota = { caixa: 500000, ger: 40000, cen: [], veic: { nome: "Caminhão VW Delivery 11.180", valor: 150000, modal: "fin", entrada: 40000, taxa: 1.49, prazo: 48, custoRec: 3000, dia: 12 } };
+  mostrarApp(true);
+  renderAuth();
+  render();
+  setConexao("off", "demonstração — nada é salvo");
+}
+
 async function initSupabase(){
   sb = window.supabase.createClient(SB_URL, SB_KEY);
   sb.auth.onAuthStateChange(async (ev, s) => {
@@ -1869,7 +1921,7 @@ async function fazerLogin(){
   const { error } = await sb.auth.signInWithPassword({ email, password: senha });
   if (error) el.innerHTML = '<div class="msg erro">' + esc(error.message === "Invalid login credentials" ? "E-mail ou senha incorretos." : error.message) + '</div>';
 }
-async function fazerLogout(){ await sb.auth.signOut(); sessao = null; perfil = null; vista = "home"; modAberto = null; obAberta = null; comentEdit = null; parcEdit = null; mostrarApp(false); }
+async function fazerLogout(){ if (MODO_DEMO) { location.reload(); return; } await sb.auth.signOut(); sessao = null; perfil = null; vista = "home"; modAberto = null; obAberta = null; comentEdit = null; parcEdit = null; mostrarApp(false); }
 async function carregarPerfil(){
   if (!sessao) return;
   const { data } = await sb.from("profiles").select("*").eq("id", sessao.user.id).single();
@@ -1996,7 +2048,7 @@ function msgSync(texto, tipo){
   if (texto && tipo !== "erro") setTimeout(() => { el.innerHTML = ""; }, 7000);
 }
 
-initSupabase();
+if (MODO_DEMO) iniciarDemo(); else initSupabase();
 
 </script>
 </body>
